@@ -37,14 +37,17 @@ const resolvers = {
     texts: () => prisma.text.findMany({ include: { lines: true } }),
     text: (_, args) => prisma.text.findUnique({ where: { id: args.id }, include: { lines: true } }),
     linesByText: (_, args) => prisma.line.findMany({ where: { textId: args.textId }, orderBy: { order: 'asc' } }),
-    searchLines: (_, args) => prisma.line.findMany({
-      where: {
-        content: {
-          contains: args.word,
-          mode: 'insensitive',
+    searchLines: (_, args) => {
+      if (!args.word || args.word.trim() === '') return [];
+      return prisma.line.findMany({
+        where: {
+          content: {
+            contains: args.word,
+          },
         },
-      },
-    }),
+        orderBy: { id: 'desc' },
+      });
+    },
   },
   Mutation: {
     createText: (_, args) => prisma.text.create({ data: { title: args.title } }),

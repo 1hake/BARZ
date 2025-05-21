@@ -2,16 +2,17 @@ FROM node:18
 
 WORKDIR /app
 
+# COPY d'abord pour cache layer npm
 COPY package.json package-lock.json* ./
-RUN npm install
 
+# --- install clean ---
+RUN rm -rf node_modules package-lock.json && npm install 
+
+# puis le reste du projet
 COPY . .
 
-RUN npm run build
 
-# Optional: Use 'serve' to serve static build (instead of Vite preview)
-RUN npm install -g serve
 
 EXPOSE 3000
 
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["npm", "run", "dev"]
