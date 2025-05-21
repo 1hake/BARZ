@@ -7,7 +7,7 @@ RUN npm install
 
 COPY . .
 
-# AJOUTE CECI : génère Prisma depuis Docker avec le bon moteur binaire
+# Generate Prisma client
 RUN npx prisma generate
 
 CMD ["npm", "run", "start"]

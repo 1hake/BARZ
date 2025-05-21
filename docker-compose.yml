@@ -5,11 +5,11 @@ services:
     build: ./backend
     ports:
       - "4000:4000"
-      - "5555:5555" # for Prisma Studio
+      - "5555:5555" # Optional: Prisma Studio
     volumes:
       - ./backend:/app
     environment:
-      - DATABASE_URL=file:./dev.db
+      - DATABASE_URL=file:/app/prisma/dev.db
     command: npm run start
 
   frontend:
