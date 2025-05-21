@@ -1,0 +1,24 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Text {
+  id        Int      @id @default(autoincrement())
+  title     String
+  lines     Line[]
+  createdAt DateTime @default(now())
+}
+
+model Line {
+  id      Int    @id @default(autoincrement())
+  textId  Int
+  text    Text   @relation(fields: [textId], references: [id])
+  content String
+  order   Int
+}

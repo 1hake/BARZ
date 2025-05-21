@@ -1,0 +1,21 @@
+# simple gitignore file
+# for a simple project
+
+# Ignore all files in the build directory
+build/
+# Ignore all files in the dist directory
+dist/
+# Ignore all files in the node_modules directory
+node_modules/
+# Ignore all files in the .vscode directory
+.vscode/
+
+# Ignore prisma migrations and db
+
+# Ignore all files in the prisma directory except for the schema.prisma file
+prisma/*
+!prisma/schema.prisma
+
+
+
+
