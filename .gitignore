@@ -1,21 +1,40 @@
-# simple gitignore file
-# for a simple project
-
-# Ignore all files in the build directory
-build/
-# Ignore all files in the dist directory
-dist/
-# Ignore all files in the node_modules directory
+# Global
 node_modules/
-# Ignore all files in the .vscode directory
+.env
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Lockfiles
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Frontend (Next.js)
+frontend/.next/
+frontend/node_modules/
+frontend/out/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/public/build/
+frontend/.turbo/
+
+# Backend (Prisma + GraphQL)
+backend/node_modules/
+backend/.env
+backend/prisma/dev.db
+backend/prisma/dev.sqlite
+backend/prisma/*.sqlite
+backend/prisma/migrations/dev/
+backend/.next/
+backend/dist/
+backend/build/
+
+# Optional: IDE / Editor files
 .vscode/
-
-# Ignore prisma migrations and db
-
-# Ignore all files in the prisma directory except for the schema.prisma file
-prisma/*
-!prisma/schema.prisma
-
-
-
-
+.idea/
+*.swp
